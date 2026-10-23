@@ -1,0 +1,23 @@
+.form-control {
+
+  height: 48px;
+
+  border-radius: 12px;
+
+  border:
+      1px solid #E5E7EB;
+
+  background: white;
+
+  transition: .3s;
+}
+
+.form-control:focus {
+
+  border-color:
+      var(--primary);
+
+  box-shadow:
+      0 0 0 4px
+      rgba(109,93,246,.12);
+}

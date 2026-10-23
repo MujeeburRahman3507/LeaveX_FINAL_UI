@@ -1,0 +1,128 @@
+/* =========================================================
+   MANAGER CALENDAR - DARK MODE
+   ========================================================= */
+
+.dark .rbc-calendar {
+    color: #e2e8f0;
+}
+
+.dark .rbc-header {
+    background: #1e293b;
+    color: #f8fafc;
+    border-color: #475569;
+}
+
+.dark .rbc-month-view,
+.dark .rbc-time-view,
+.dark .rbc-agenda-view {
+    background: #1e293b;
+    border-color: #475569;
+}
+
+.dark .rbc-day-bg {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+.dark .rbc-off-range-bg {
+    background: #0f172a;
+}
+
+.dark .rbc-today {
+    background: rgba(124, 58, 237, 0.15);
+}
+
+.dark .rbc-date-cell {
+    color: #cbd5e1;
+}
+
+.dark .rbc-month-row {
+    border-color: #475569;
+}
+
+.dark .rbc-day-slot,
+.dark .rbc-time-slot {
+    border-color: #334155;
+}
+
+.dark .rbc-time-header-content {
+    border-color: #475569;
+}
+
+.dark .rbc-toolbar {
+    color: #f8fafc;
+}
+
+.dark .rbc-toolbar button {
+    color: #e2e8f0;
+    border-color: #475569;
+    background: #1e293b;
+}
+
+.dark .rbc-toolbar button:hover {
+    background: #334155;
+}
+
+.dark .rbc-toolbar button.rbc-active {
+    background: #7c3aed;
+    color: white;
+    border-color: #7c3aed;
+}
+
+.dark .rbc-time-content {
+    border-color: #475569;
+}
+
+.dark .rbc-time-gutter,
+.dark .rbc-label {
+    color: #94a3b8;
+}
+
+.dark .rbc-current-time-indicator {
+    background-color: #ef4444;
+}
+
+/* =========================================================
+   ADMIN METRIC CARDS
+   ========================================================= */
+
+.admin-metric-card {
+    background-color: #ffffff;
+    border-color: #e5e7eb;
+    color: #111827;
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* ---------- DARK MODE ---------- */
+
+.dark .admin-metric-card {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+
+/* Card title */
+
+.dark .admin-metric-card p {
+    color: #94a3b8 !important;
+}
+
+
+/* Card number */
+
+.dark .admin-metric-card h2 {
+    color: #ffffff !important;
+}
+
+
+/* Dark hover */
+
+.dark .admin-metric-card:hover {
+    background-color: #263449 !important;
+}

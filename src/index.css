@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+   ========================================================= */
+
+:root {
+
+    --sidebar-width: 260px;
+    --navbar-height: 72px;
+
+    /* Application colors */
+    --page-bg: #f5f7fb;
+    --card-bg: #ffffff;
+
+    --border: #e5e7eb;
+
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+
+    --primary: #6d5df6;
+    --primary-light: #8b7cff;
+
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+
+    --radius-lg: 16px;
+    --radius-md: 12px;
+
+    --shadow-card:
+        0 8px 30px rgba(0, 0, 0, 0.08);
+
+    --transition:
+        all 0.3s ease;
+}
+
+
+/* =========================================================
+   DARK MODE VARIABLES
+   ========================================================= */
+
+html.dark {
+
+    --page-bg: #0f172a;
+
+    --card-bg: #1e293b;
+
+    --border: #334155;
+
+    --text-primary: #f8fafc;
+
+    --text-secondary: #94a3b8;
+
+    --background: #0f172a;
+
+}
+
+
+/* =========================================================
+   LIGHT MODE VARIABLES
+   ========================================================= */
+
+html.light {
+
+    --page-bg: #f5f7fb;
+
+    --card-bg: #ffffff;
+
+    --border: #e5e7eb;
+
+    --text-primary: #111827;
+
+    --text-secondary: #6b7280;
+
+    --background: #f8f9fc;
+
+}
+
+
+/* =========================================================
+   HTML / BODY / ROOT
+   ========================================================= */
+
+html,
+body,
+#root {
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    background: var(--page-bg);
+
+    color: var(--text-primary);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        sans-serif;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+
+}
+
+
+/* =========================================================
+   APPLICATION LAYOUT
+   ========================================================= */
+
+.app-layout {
+
+    display: flex;
+
+    width: 100%;
+
+    height: 100vh;
+
+    background: var(--page-bg);
+
+    color: var(--text-primary);
+
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+   ========================================================= */
+
+.page-content {
+
+    margin-left: var(--sidebar-width);
+
+    width:
+        calc(
+            100% - var(--sidebar-width)
+        );
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: var(--page-bg);
+
+}
+
+
+/* =========================================================
+   PAGE SCROLL
+   ========================================================= */
+
+.page-scroll {
+
+    height:
+        calc(
+            100vh - var(--navbar-height)
+        );
+
+    overflow-y: auto;
+
+    overflow-x: auto;
+
+    padding: 24px;
+
+    background: var(--page-bg);
+
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+   ========================================================= */
+
+.page-wrapper {
+
+    min-width: 1450px;
+
+    min-height: 100%;
+
+    background: var(--page-bg);
+
+    color: var(--text-primary);
+
+}
+

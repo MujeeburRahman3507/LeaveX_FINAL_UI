@@ -1,0 +1,300 @@
+/* =========================================================
+   MOBILE / TABLET RESPONSIVE LAYER  (imported LAST in main.jsx)
+   Desktop (>=1024px) is untouched.
+   ========================================================= */
+
+/* iOS: stop auto-zoom on focus, nicer taps */
+@media (max-width: 1023px) {
+  input, select, textarea { font-size: 16px !important; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+}
+
+@media (max-width: 1023px) {
+  /* let pages without the dashboard layout (login, forgot password...) scroll */
+  html, body, #root {
+    height: auto !important;
+    min-height: 100%;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  /* dashboard shell: full width, no fixed sidebar offset, internal scroll */
+  .app-layout {
+    height: 100dvh !important;
+    overflow: hidden;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .page-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0;
+  }
+  .page-scroll {
+    height: auto !important;
+    flex: 1 1 0%;
+    min-height: 0;
+    padding: 12px !important;
+    padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important; /* room for bottom nav */
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* the 1450px desktop minimum is what made the web app unusable on phones */
+  .page-wrapper { min-width: 0 !important; width: 100%; }
+
+  /* slide-in sidebar: respect notch */
+  aside.fixed {
+    padding-top: env(safe-area-inset-top, 0px);
+    max-width: 85vw;
+    box-shadow: 0 0 40px rgba(0, 0, 0, .25);
+  }
+
+  /* navbar */
+  .navbar { padding: 0 12px; }
+
+  /* wide tables scroll sideways inside themselves instead of breaking the page */
+  .page-scroll table:not([class*="rbc"]):not(.hidden):not(.data-grid) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .page-scroll .table-card { overflow-x: auto; }
+
+  /* charts / images never overflow */
+  .page-scroll img, .page-scroll svg, .page-scroll canvas { max-width: 100%; }
+  .recharts-wrapper { max-width: 100% !important; }
+
+
+  /* ag-grid / MUI data grid: scroll inside */
+  .ag-root-wrapper, .MuiDataGrid-root { max-width: 100%; }
+}
+
+/* phones */
+@media (max-width: 639px) {
+  /* multi-column Tailwind grids collapse; 2-col small tiles are kept */
+  .page-scroll .grid[class*="grid-cols-"]:not(.keep-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .page-scroll .grid.grid-cols-2:not(.keep-grid),
+  .page-scroll .grid.grid-cols-3:not(.keep-grid),
+  .page-scroll .grid.grid-cols-4:not(.keep-grid),
+  .page-scroll .grid.grid-cols-5:not(.keep-grid),
+  .page-scroll .grid.grid-cols-6:not(.keep-grid) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .page-scroll .grid[style*="grid-template-columns"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* fixed-width panels / modals */
+  [class*="w-[420px]"], [class*="w-[500px]"], [class*="w-[520px]"],
+  [class*="w-[1600px]"], [class*="min-w-[1050px]"] {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 16px) !important;
+  }
+  .page-scroll h1 { font-size: 1.35rem; }
+  .metric-card { padding: 16px; }
+  .metric-value { font-size: 24px; }
+}
+
+/* ---------- bottom navigation (mobile only) ---------- */
+.mobile-bottom-nav { display: none; }
+@media (max-width: 1023px) {
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 40;
+    background: var(--card-bg, #fff);
+    border-top: 1px solid var(--border, #e5e7eb);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .mobile-bottom-nav a, .mobile-bottom-nav button {
+    flex: 1 1 0%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px; padding: 8px 2px; min-height: 56px;
+    font-size: 11px; font-weight: 500;
+    color: var(--text-secondary, #6b7280);
+    background: none; border: 0;
+  }
+  .mobile-bottom-nav a.active { color: var(--primary, #6d5df6); }
+}
+
+/* =========================================================
+   Round 2: notifications, header, floating assistants, dashboard
+   ========================================================= */
+@media (max-width: 1023px) {
+  /* header spacing (it used px-8) */
+  .app-layout header { padding-left: 12px !important; padding-right: 12px !important; }
+
+  /* notification dropdown: full-width sheet under the navbar instead of overflowing off-screen */
+  .notif-dropdown {
+    position: fixed !important;
+    top: calc(env(safe-area-inset-top, 0px) + 68px);
+    left: 8px !important;
+    right: 8px !important;
+    width: auto !important;
+    max-height: calc(100dvh - 160px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* floating AI buttons sit above the bottom nav */
+  .ai-fab,
+  .fixed.bottom-6.right-6:not([class*="w-[420px]"]) {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 16px !important;
+  }
+  .ai-panel {
+    left: 8px !important;
+    right: 8px !important;
+    width: auto !important;
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+    max-height: calc(100dvh - 160px) !important;
+  }
+  .ai-panel > div:last-child { margin-bottom: 0; }
+}
+
+/* metric card icons on phones */
+@media (max-width: 639px) {
+  .metric-icon svg { width: 16px; height: 16px; }
+}
+
+/* =========================================================
+   Round 3: manager screens (calendar, SLA cards)
+   ========================================================= */
+@media (max-width: 639px) {
+  .metric-icon-sm svg { width: 16px; height: 16px; }
+
+  /* filters / selects use the full width */
+  .page-scroll select { max-width: 100%; }
+
+  /* ---- react-big-calendar on phones ---- */
+  .rbc-calendar { font-size: 12px; }
+  .rbc-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .rbc-toolbar .rbc-toolbar-label {
+    order: -1;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .rbc-toolbar .rbc-btn-group {
+    display: flex;
+    width: 100%;
+  }
+  .rbc-toolbar .rbc-btn-group button {
+    flex: 1 1 0%;
+    padding: 6px 4px;
+    font-size: 12px;
+  }
+  .rbc-header { padding: 4px 0; font-size: 11px; }
+  .rbc-header span { overflow: hidden; text-overflow: clip; }
+  .rbc-date-cell { padding: 2px 4px; font-size: 11px; }
+  .rbc-event { font-size: 10px; padding: 1px 3px !important; line-height: 1.2; }
+  .rbc-show-more { font-size: 10px; }
+  .rbc-month-row { min-height: 64px; }
+  .rbc-agenda-view table.rbc-agenda-table { width: 100%; font-size: 12px; }
+  .rbc-agenda-view table.rbc-agenda-table th,
+  .rbc-agenda-view table.rbc-agenda-table td { padding: 6px 4px; }
+  .rbc-time-view .rbc-time-gutter { font-size: 10px; }
+}
+
+/* =========================================================
+   Round 4: approval details, supporting documents
+   ========================================================= */
+@media (max-width: 1023px) {
+  .doc-card { overflow: hidden; }
+  .doc-card p { overflow-wrap: anywhere; }
+  .doc-actions { width: 100%; }
+  .doc-actions button {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .doc-actions button svg { width: 16px; height: 16px; }
+}
+
+/* =========================================================
+   Round 5: tables whose last column is "Action" (View / Review)
+   On phones the Action column is moved to the FRONT and pinned,
+   so the button is visible without scrolling sideways.
+   Add class "action-first" to a <table> to use it.
+   ========================================================= */
+@media (max-width: 1023px) {
+  .page-scroll table.action-first,
+  .page-scroll table.action-first thead,
+  .page-scroll table.action-first tbody { display: block; }
+
+  .page-scroll table.action-first tr {
+    display: flex;
+    width: max-content;
+    min-width: 100%;
+    align-items: center;
+  }
+  .page-scroll table.action-first th,
+  .page-scroll table.action-first td {
+    flex: 0 0 132px;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 10px !important;
+    overflow-wrap: anywhere;
+  }
+  .page-scroll table.action-first th:last-child,
+  .page-scroll table.action-first td:last-child {
+    order: -1;
+    flex: 0 0 96px;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, .06);
+    text-align: center;
+  }
+  .page-scroll table.action-first thead th:last-child { background: #f8fafc; }
+  .dark .page-scroll table.action-first th:last-child,
+  .dark .page-scroll table.action-first td:last-child { background: #1e293b; }
+  .page-scroll table.action-first td:last-child button,
+  .page-scroll table.action-first td:last-child a {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+    white-space: nowrap;
+  }
+}
+
+/* =========================================================
+   Round 6: appraisal screens
+   ========================================================= */
+@media (max-width: 767px) {
+  /* first summary card (employee) spans the full row, others share the next row */
+  .appr-summary > :first-child { grid-column: span 2; }
+  .appr-summary p { overflow-wrap: anywhere; }
+
+  /* long text never pushes the page sideways */
+  .page-scroll h1, .page-scroll h2, .page-scroll h3, .page-scroll p { overflow-wrap: anywhere; }
+
+  /* form controls in appraisal forms use the full width */
+  .page-scroll textarea, .page-scroll input[type="text"], .page-scroll input[type="number"] { max-width: 100%; }
+}
+
+/* =========================================================
+   Round 7: data grid (approvals) + hidden tables
+   ========================================================= */
+@media (max-width: 1023px) {
+  /* never override tailwind's "hidden" on tables, never flatten data-grid tables */
+  .page-scroll table.hidden { display: none !important; }
+  .page-scroll table.data-grid { display: table !important; overflow: visible; }
+  .data-grid input, .data-grid select { font-size: 14px !important; }
+}

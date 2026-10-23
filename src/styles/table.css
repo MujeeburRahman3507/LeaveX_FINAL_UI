@@ -1,0 +1,62 @@
+.table-card {
+
+  background: white;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow:
+      0 8px 30px rgba(0,0,0,.08);
+}
+
+.table-card table {
+
+  width: 100%;
+}
+
+.table-card thead {
+
+  position: sticky;
+
+  top: 0;
+
+  background: #F8FAFC;
+
+  z-index: 1;
+}
+
+.table-card tr:hover {
+
+  background:
+      #F9FAFB;
+}
+
+.badge-approved {
+
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.badge-pending {
+
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.badge-rejected {
+
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+
+.badge {
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
