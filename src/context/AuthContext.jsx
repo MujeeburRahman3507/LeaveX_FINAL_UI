@@ -4,6 +4,7 @@ import {
   useEffect,
   useState
 } from "react";
+import { isTokenExpired } from "../utils/jwt";
 
 const AuthContext =
   createContext();
@@ -16,6 +17,10 @@ export const AuthProvider = ({
     try {
       const token = localStorage.getItem("token");
       if (!token) return null;
+      if (isTokenExpired(token)) {
+        localStorage.clear();
+        return null;
+      }
       return {
         token,
         username: localStorage.getItem("username"),
@@ -52,6 +57,12 @@ export const AuthProvider = ({
           "roles"
         ) || "[]"
       );
+
+    if (token && isTokenExpired(token)) {
+      localStorage.clear();
+      setUser(null);
+      return;
+    }
 
     if (token) {
 
